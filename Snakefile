@@ -9,6 +9,8 @@ The parameters of the analysis are defined in the analysis_parameters.yaml confi
 Pipeline created to analyse the RNA-seq data from nf-code/atacseq pipeline.
 '''
 
+
+
 # Pipeline configuration file
 configfile: "analysis_parameters.yaml"
 
@@ -234,3 +236,8 @@ rule Plot_marker_genes:
         mem_mb = 12000
     script:
         "workflow/scripts/plot_marker_genes.R"
+
+onsuccess:
+    from snakemake.report import auto_report
+    auto_report(workflow.persistence.dag, f'{config["project_name"]}/report/report.html')
+    

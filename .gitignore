@@ -1,0 +1,7 @@
+.snakemake/
+Rplots.pdf
+*results/
+.character(highlight)
+.conda/
+jobs/
+logs/

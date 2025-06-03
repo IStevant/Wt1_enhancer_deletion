@@ -1,0 +1,66 @@
+###########################################
+#                                         #
+#           Analysis parameters           #
+#                                         #
+###########################################
+
+
+# Project name for the result folder
+project_name: XX_ESC_results
+
+########################
+# Mouse genome version #
+########################
+# Version of the genome on which the sequencing data were mapped.
+# Can be either "mm10" or "GRCm39"
+# If not specified, default is "mm10"
+# You can overwrite using --config genome_version="..." when running the pipeline
+
+genome_version: mm10
+# genome_version: GRCm39
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#################
+# General paths #
+#################
+
+# Do you want to start the analysis directly from the nf-core/RNAseq pipeline output?
+# Can be either yes or no
+from_nf-core:          "yes"
+# Path to the samplesheet used by the nf-core/RNAseq pipeline.
+# Samples will be ordered in the graphs as they are in the samplesheet.
+nf-core_samplesheet:   /home/istevant/work/data/RNAseq/250527_XX_ESC/samplesheet.csv
+# Specify the path to the nf-core/RNAseq output directory
+nf-core_path:          /home/istevant/work/data/RNAseq/250527_XX_ESC/mapping_nf-core_rnaseq_v3.12.0_GRCm38
+# Specify if reads are paired or single-ends
+nf-core_reads:          single
+
+# Path to necessary data within the nf-core/RNAseq ouput folder
+# Mdify the path below according to the mapper used by the nf-code/RNAseq pipeline
+nf-core_multiQC:       multiqc/star_rsem/multiqc_data
+nf-core_readCounts:    star_rsem/rsem.merged.gene_counts.tsv
+nf-core_TPM:           star_rsem/rsem.merged.gene_tpm.tsv
+
+# If starting from already processed data, specify the path to the quantificatoin files.
+# The samples will be ordered in the graphs as they are in these files.
+counts:                workflow/data/merged_raw_counts.csv
+TPM:                   workflow/data/merged_TPM_counts.csv
+
+# Path to extra data files
+protein_genes:         workflow/data/mart_prot_coding_genes.txt
+marker_genes:          workflow/data/gonad_marker_genes.csv
+TF_genes:              workflow/data/mouse_transcription_factors.txt
+TF_pheno:              workflow/data/TF_gonad_pheno.tsv
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+###############################
+# RNA-seq analysis parameters #
+###############################
+
+# Give the name of the outlier(s). If there is no outlier, set outliers as "None".
+outliers:     "None"
+minReads:     1
+minTPM:       0.01
+corr_met:     spearman
+adjpval:      0.01
+log2FC:       0.5

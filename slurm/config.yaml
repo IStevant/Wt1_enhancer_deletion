@@ -1,0 +1,13 @@
+executor: slurm
+jobs: 10
+
+default-resources:
+    slurm_account:   istevant
+    runtime: 120 # 1 hour
+
+set-resources:
+    <rulename>:
+        runtime: 120 # 1 hour
+        slurm_extra: "'--nice=150'"
+        mem_mb_per_cpu: 1800
+        cpus_per_task: 40

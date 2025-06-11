@@ -50,7 +50,7 @@ cluster_method <- "complete"
 #' @param colours Vector containing the hexadecimal colours corresponding to each conditions.
 #' @return Pheatmap object.
 correlation <- function(matrix, method = "Spearman", colours, cluster_method="ward.D2") {
-  matrix <- matrix[, order(names(matrix))]
+  # matrix <- matrix[, order(names(matrix))]
   cor_data <- cor(matrix, method = method)
   cor_data[cor_data == 1.000] <- NA
   conditions <- factor(conditions, levels = cond_sorted)

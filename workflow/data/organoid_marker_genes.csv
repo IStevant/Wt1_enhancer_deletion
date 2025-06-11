@@ -1,4 +1,16 @@
 Gene,Cell_type,Figure
+Klf4,ESC,main
+Pou5f1,ESC,main
+Nanog,ESC,main
+Zfp42,ESC,main
+Sox2,ESC,main
+Gjb5,ESC,main
+Dppa3,EpiSC,main
+Fgf5,EpiSC,main
+Lin28b,EpiSC,main
+Eomes,Mesoderm,main
+Mixl1,Mesoderm,main
+T,Mesoderm,main
 Nr5a1,Somatic cells,sup
 Wt1,Somatic cells,sup
 Gata4,Somatic cells,sup

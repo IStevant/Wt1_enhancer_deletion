@@ -132,10 +132,12 @@ gene_exp <- function(genes, TPM, title) {
 
   plot_graphs <- plot_grid(plotlist = plotlist, ncol = 4, align = "hv")
 
+  nb_rows_per_type <- ceiling(length(genes)/4)
+
   plots <- plot_grid(
     gtitle, plot_graphs,
     ncol = 1,
-    rel_heights = c(0.1, 1)
+    rel_heights = c(0.1, nb_rows_per_type)
   )
   return(plots)
 }
@@ -146,6 +148,9 @@ gene_exp <- function(genes, TPM, title) {
 #                                        #
 ##########################################
 
+nb_rows_per_type <- ceiling(table(markerGenes$Cell_type)/4)
+nb_rows_per_type <- nb_rows_per_type[unique(markerGenes$Cell_type)]
+
 # Plot expression of the marker genes
 plot_genes <- plot_expression_scatter(TPM, markerGenes)
 
@@ -153,7 +158,7 @@ figure <- plot_grid(
   plotlist = plot_genes,
   labels = "AUTO",
   ncol = 1,
-  rel_heights = c(1, 2, 2, 1, 1),
+  rel_heights = nb_rows_per_type,
   align = "v"
 )
 
@@ -169,7 +174,7 @@ save_plot(
   snakemake@output[["fig_pdf"]],
   figure,
   base_width = 42,
-  base_height = 60,
+  base_height = nrow(markerGenes)*2,
   units = c("cm"),
   dpi = 300
 )
@@ -179,7 +184,7 @@ save_plot(
   snakemake@output[["fig_png"]],
   figure,
   base_width = 42,
-  base_height = 60,
+  base_height = nrow(markerGenes)*2,
   units = c("cm"),
   dpi = 300,
   bg = "white"

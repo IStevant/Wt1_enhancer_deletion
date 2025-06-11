@@ -236,8 +236,3 @@ rule Plot_marker_genes:
         mem_mb = 12000
     script:
         "workflow/scripts/plot_marker_genes.R"
-
-onsuccess:
-    from snakemake.report import auto_report
-    auto_report(workflow.persistence.dag, f'{config["project_name"]}/report/report.html')
-    

@@ -68,7 +68,7 @@ else:
 rule_output_list = [
     expand(f"{output_png}/corr_pca{{matrix}}png", matrix=exp_matrice),
     expand(f"{output_png}/DEG_heatmap{{matrix}}png", matrix=exp_matrice),
-    expand(f"{output_png}/marker_genes{{matrix}}png", matrix=exp_matrice),
+    expand(f"{output_png}/main_marker_genes{{matrix}}png", matrix=exp_matrice),
     expand(f"{output_tables}/DEG_with_clusters{{matrix}}tsv", matrix=exp_matrice)
 ]
 
@@ -212,10 +212,10 @@ rule Plot_heatmap_GO:
 # Add the cluster id to the DE gene result table
 rule DEG_result_table:
     input:
-        cluster_file = f"{data}/DEG_heatmap_clusters{{matrix}}csv",
+        cluster_file  = f"{data}/DEG_heatmap_clusters{{matrix}}csv",
         sig_DEG_table = f"{data}/DEGs{{matrix}}tsv"
     output:
-        DEG_table = f"{output_tables}/DEG_with_clusters{{matrix}}tsv"
+        DEG_table     = f"{output_tables}/DEG_with_clusters{{matrix}}tsv"
     threads: 1
     resources:
         mem_mb = 16000
@@ -228,9 +228,13 @@ rule Plot_marker_genes:
     input:
         TPM          = f"{data}/TPM{{matrix}}csv",
         marker_genes = config["marker_genes"]
+    params:
+        stat         = "yes"
     output:
-        fig_png = f"{output_png}/marker_genes{{matrix}}png",
-        fig_pdf = f"{output_pdf}/marker_genes{{matrix}}pdf",
+        main_fig_png      = f"{output_png}/main_marker_genes{{matrix}}png",
+        main_fig_pdf      = f"{output_pdf}/main_marker_genes{{matrix}}pdf",
+        sup_fig_png      = f"{output_png}/sup_marker_genes{{matrix}}png",
+        sup_fig_pdf      = f"{output_pdf}/sup_marker_genes{{matrix}}pdf"
     threads: 1
     resources:
         mem_mb = 12000

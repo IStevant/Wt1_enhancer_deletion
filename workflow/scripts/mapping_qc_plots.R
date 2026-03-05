@@ -59,7 +59,15 @@ mapping_summary <- data.frame(
 
 # Pick colors
 set.seed(1234)
-colours <- randomcoloR::distinctColorPalette(length(group))
+# colours <- randomcoloR::distinctColorPalette(length(group))
+colours <- c(
+	"#2f8e26",
+	"#83da7a",
+	"#d5f3d2",
+	"#9542ca",
+	"#cba2e5",
+	"#ebdcf6"
+)
 names(colours) <- group
 
 ###########################################

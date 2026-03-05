@@ -41,7 +41,15 @@ cond_sorted <- unique(conditions)
 
 # Pick colors
 set.seed(1234)
-conditions_color <- randomcoloR::distinctColorPalette(length(cond_sorted))
+# conditions_color <- randomcoloR::distinctColorPalette(length(cond_sorted))
+conditions_color <- c(
+  "#2f8e26",
+  "#83da7a",
+  "#d5f3d2",
+  "#9542ca",
+  "#cba2e5",
+  "#ebdcf6"
+)
 names(conditions_color) <- cond_sorted
 
 

@@ -6,7 +6,9 @@
 
 
 # Project name for the result folder
-project_name: XX_ESC_results
+# project_name: XX_ESC_results
+project_name: E13.5_Wt1-up_Enh_KO_results
+
 
 ########################
 # Mouse genome version #
@@ -16,8 +18,8 @@ project_name: XX_ESC_results
 # If not specified, default is "mm10"
 # You can overwrite using --config genome_version="..." when running the pipeline
 
-genome_version: mm10
-# genome_version: GRCm39
+# genome_version: mm10
+genome_version: GRCm39
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #################
@@ -29,11 +31,11 @@ genome_version: mm10
 from_nf-core:          "yes"
 # Path to the samplesheet used by the nf-core/RNAseq pipeline.
 # Samples will be ordered in the graphs as they are in the samplesheet.
-nf-core_samplesheet:   /home/istevant/work/data/RNAseq/250527_XX_ESC/samplesheet.csv
+nf-core_samplesheet:   /home/istevant/work/data/RNAseq/Gonen_2026/samplesheet_Meshi.csv
 # Specify the path to the nf-core/RNAseq output directory
-nf-core_path:          /home/istevant/work/data/RNAseq/250527_XX_ESC/mapping_nf-core_rnaseq_v3.12.0_GRCm38
+nf-core_path:          /home/istevant/work/data/RNAseq/Gonen_2026/Meshi_mapping_nf-core_rnaseq_v3.12.0
 # Specify if reads are paired or single-ends
-nf-core_reads:          single
+nf-core_reads:         single
 
 # Path to necessary data within the nf-core/RNAseq ouput folder
 # Mdify the path below according to the mapper used by the nf-code/RNAseq pipeline
@@ -48,7 +50,7 @@ TPM:                   workflow/data/merged_TPM_counts.csv
 
 # Path to extra data files
 protein_genes:         workflow/data/mart_prot_coding_genes.txt
-marker_genes:          workflow/data/organoid_marker_genes.csv
+marker_genes:          workflow/data/gonad_marker_genes.csv
 TF_genes:              workflow/data/mouse_transcription_factors.txt
 TF_pheno:              workflow/data/TF_gonad_pheno.tsv
 

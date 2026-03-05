@@ -30,7 +30,15 @@ cond_sorted <- unique(conditions)
 
 # Pick colors
 set.seed(1234)
-colours <- randomcoloR::distinctColorPalette(length(cond_sorted))
+# colours <- randomcoloR::distinctColorPalette(length(cond_sorted))
+colours <- c(
+  "#2f8e26",
+  "#83da7a",
+  "#d5f3d2",
+  "#9542ca",
+  "#cba2e5",
+  "#ebdcf6"
+)
 names(colours) <- cond_sorted
 
 corr_method <- snakemake@params[["corr_method"]]
@@ -134,8 +142,9 @@ plot.pca <- function(matrix, colours, PCs = c("PC1", "PC2")) {
       data$rep <- replicates
       colnames(data) <- c("PC_x", "PC_y", "cond", "rep")
       data$cond = factor(data$cond, levels = cond_sorted)
-      plot <- ggplot(data, aes(x = PC_x, y = PC_y, fill = cond)) +
-        geom_point(shape = 21, size = 6, stroke = 0.5, color = "#444444") +
+
+      plot <- ggplot(data, aes(x = PC_x, y = PC_y, fill = cond, color = cond)) +
+        geom_point(aes(shape = sex), size = 6) +
         scale_fill_manual(values = colours) +
         scale_color_manual(values = colours) +
         # ggtitle("PCA on TPM")+
